@@ -1,0 +1,10 @@
+log_level: INFO
+log_output: /var/log/herald-runner/herald-runner.log
+
+host: 127.0.0.1
+port: 8124
+#unix_socket: /var/run/herald-runner/herald-runner.sock
+
+secret: the_secret_should_be_strong_enough
+
+work_dir: /var/lib/herald-runner/work

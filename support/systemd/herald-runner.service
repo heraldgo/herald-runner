@@ -1,0 +1,14 @@
+[Unit]
+Description=Herald Runner Service
+After=network.target
+Wants=network.target
+
+[Service]
+#User=herald
+#Group=herald
+Type=simple
+ExecStart=/usr/bin/herald-runner -config /etc/herald-runner/config.yml
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

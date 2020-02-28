@@ -8,8 +8,10 @@ and `http_remote` get result from the http response.
 
 ## Installation
 
-First install [Go](https://golang.org/) and setup the workspace,
-then use the following command to install herald daemon.
+Download binary file from the
+[release page](https://github.com/heraldgo/herald-runner/releases).
+
+Or install by source with [Go](https://golang.org/):
 
 ```shell
 $ go get -u github.com/heraldgo/herald-runner

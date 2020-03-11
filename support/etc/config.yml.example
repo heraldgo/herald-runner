@@ -1,5 +1,5 @@
 log_level: INFO
-log_output: /var/log/herald-runner/herald-runner.log
+#log_output: /var/log/herald-runner/herald-runner.log
 
 host: 127.0.0.1
 port: 8124

@@ -138,6 +138,7 @@ func main() {
 	setupLog(&logFile)
 
 	log.Infoln(strings.Repeat("=", 80))
+	log.Infoln("[HeraldRunner] Herald runner version:", Version)
 	log.Infoln("[HeraldRunner] Initialize...")
 
 	ctx := context.Background()

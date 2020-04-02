@@ -144,7 +144,7 @@ func (r *runner) respondMultiple(w http.ResponseWriter, result map[string]interf
 }
 
 func (r *runner) processExecution(w http.ResponseWriter, req *http.Request, body []byte) {
-	r.Infof("Start to execute with param: %s", string(body))
+	r.Infof("Start to execute...")
 
 	bodyMap, err := util.JSONToMap(body)
 	if err != nil {

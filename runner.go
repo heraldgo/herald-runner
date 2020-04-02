@@ -144,16 +144,18 @@ func (r *runner) respondMultiple(w http.ResponseWriter, result map[string]interf
 }
 
 func (r *runner) processExecution(w http.ResponseWriter, req *http.Request, body []byte) {
-	r.Infof("Start to execute...")
+	r.Infof("Start to process request")
 
 	bodyMap, err := util.JSONToMap(body)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte(fmt.Sprintf("Request body error: %s", err)))
+		r.Errorf("Request body error: %s", err)
 		return
 	}
 
 	result := r.exeGit.Execute(bodyMap)
+	r.Infof("Request processed")
 	r.Debugf("Execute result: %#v", result)
 
 	fileMap, _ := result["file"].(map[string]interface{})

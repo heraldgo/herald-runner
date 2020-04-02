@@ -4,7 +4,7 @@ cd $(dirname "$0")
 
 version=$(grep 'const Version' ../version.go | cut '-d"' -f2)
 
-build_dir=herald-runner
+build_dir=$1
 
 rm -rf "$build_dir"
 
@@ -26,9 +26,9 @@ release() {
   GOOS=$goos GOARCH=$goarch go build -ldflags '-s -w' -o "$target_dir" ..
 
   if [ $? -eq 0 ]; then
-    echo "Build Herald Daemon $goos-$goarch successfully"
+    echo "Build Herald Runner $goos-$goarch successfully"
   else
-    echo "Build Herald Daemon $goos-$goarch failed"
+    echo "Build Herald Runner $goos-$goarch failed"
   fi
 
   cp ../support/etc/config.yml.example "$target_dir/config.yml"
@@ -39,9 +39,9 @@ release() {
   tar -C "$build_dir" -czf "$build_dir/$archive_name" "$target_name"
 
   if [ $? -eq 0 ]; then
-    echo "Pack Herald Daemon $goos-$goarch successfully"
+    echo "Pack Herald Runner $goos-$goarch successfully"
   else
-    echo "Pack Herald Daemon $goos-$goarch failed"
+    echo "Pack Herald Runner $goos-$goarch failed"
   fi
 }
 

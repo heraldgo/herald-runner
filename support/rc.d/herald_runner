@@ -1,0 +1,18 @@
+#!/bin/sh
+# PROVIDE: herald_runner
+# REQUIRE: DAEMON NETWORKING LOGIN
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+name=herald_runner
+rcvar="${name}_enable"
+herald_runner_command="/usr/local/bin/herald-runner"
+pidfile="/var/run/${name}.pid"
+
+herald_runner_config="/usr/local/etc/herald-runner/config.yml"
+command="/usr/sbin/daemon"
+command_args="-P ${pidfile} -r -f ${herald_runner_command} -config ${herald_runner_config}"
+
+load_rc_config $name
+run_rc_command "$1"

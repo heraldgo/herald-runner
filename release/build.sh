@@ -31,9 +31,11 @@ release() {
     echo "Build Herald Runner $goos-$goarch failed"
   fi
 
-  cp ../support/etc/config.yml.example "$target_dir/config.yml"
+  cp ../support/config.yml.example "$target_dir/config.yml"
   if [ $goos = linux ]; then
     cp -r ../support/systemd "$target_dir/systemd"
+  elif [ $goos = freebsd ]; then
+    cp -r ../support/rc.d "$target_dir/rc.d"
   fi
 
   tar -C "$build_dir" -czf "$build_dir/$archive_name" "$target_name"

@@ -148,13 +148,20 @@ func (r *runner) processExecution(w http.ResponseWriter, req *http.Request, body
 
 	bodyMap, err := util.JSONToMap(body)
 	if err != nil {
+		r.Errorf("Request body error: %s", err)
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte(fmt.Sprintf("Request body error: %s", err)))
-		r.Errorf("Request body error: %s", err)
 		return
 	}
 
-	result := r.exeGit.Execute(bodyMap)
+	result, err := r.exeGit.Execute(bodyMap)
+	if err != nil {
+		r.Errorf("Execution error: %s", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte(err.Error()))
+		return
+	}
+
 	r.Infof("Request processed")
 	r.Debugf("Execute result: %#v", result)
 
